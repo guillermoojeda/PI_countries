@@ -1,0 +1,33 @@
+.LandingPage {
+    background-image: "/world_map2.jpg";
+    min-height: 100vh;
+    font-size: 20px;
+    margin: auto;
+    width: 100%;
+    border: 3px solid green;
+    padding: 10px;
+    display:flex;
+}
+
+.text1 {
+    font-size: 25px;
+    margin: auto;
+    border: 3px solid black;
+    padding: 10px;
+    text-align: center;
+    width: 10%;
+    min-width: 20px;
+    background-color: rgb(185, 180, 180);
+    border-radius: 5px;
+}
+
+.button {
+    width: 10%;
+    min-width: 20px;
+    background-color: grey;
+}
+
+#image {
+    z-index: 2;
+    position: absolute;
+}

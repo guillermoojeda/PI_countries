@@ -161,7 +161,7 @@ router.get('/countries', async (req, res) => {
 
 
 router.get('/countries/:code', (req, res) => {
-    var code = req.params.code.toUpperCase();
+    var code = req.params.code;
 
     console.log("Entró aquí -- code: " + code)
 

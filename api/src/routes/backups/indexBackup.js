@@ -49,74 +49,49 @@ router.get('/countries', async (req, res) => {
         )
     } else {
 
-        await Country.findAll({
-            attributes: ['id', 'flagImage', 'name', 'continent', 'alpha3Code'],
-            include: [{
-                model: Activity,
-                as: "activities"
-            }]
-        }).then(result => {
+        //Modifico desde aquí
 
-            if (result.length === 0) { // Llamar a la API externa únicamente si nuestra base de datos de países está vacía.
-                console.log("Entro acá 1")
-                fetchAll().then(
-                    result => {// Llenando base de datos
 
-                        result.data.forEach(
-                            country => {
-                                var { name, alpha3Code, capital, subregion, area, population } = country;
-                                var flagImage = country.flag;
-                                var continent = country.region;
-                                var newCountry = {
-                                    name,
-                                    alpha3Code,
-                                    flagImage,
-                                    continent,
-                                    subregion,
-                                    capital,
-                                    area,
-                                    population
-                                };
-                                Country.create(newCountry)
-                            }
-                        )
-                        console.log("Países fetcheados del endpoint, database filled")
 
-                        //Desde aquí modificado por el tema de CORSvf
-                        Country.findAll({
-                            attributes: ['id', 'flagImage', 'name', 'continent', 'alpha3Code', 'population'],
-                            include: [{
-                                model: Activity,
-                                as: "activities"
-                            }]
-                        }).then(result => {
-                            console.log(result);
-                            console.log("Enviando listado de paises al clientex");
-                            res.status(200).send(result)
-                        });
+        //hasta aquí
 
-                        //Hasta aquí. Esto reemplazó el siguiente contenido:
 
+        fetchAll().then(
+            result => {// Llenando base de datos
+
+                result.data.forEach(
+                    country => {
+                        var { name, alpha3Code, capital, subregion, area, population } = country;
+                        var flagImage = country.flag;
+                        var continent = country.region;
+                        var newCountry = {
+                            name,
+                            alpha3Code,
+                            flagImage,
+                            continent,
+                            subregion,
+                            capital,
+                            area,
+                            population
+                        };
+                        Country.create(newCountry)
                     }
                 )
-            } else {
-                console.log("Entro acá 2.")
+                console.log("Países fetcheados del endpoint, database filled")
+
+                //Desde aquí modificado por el tema de CORS
                 Country.findAll({
-                    attributes: ['id', 'flagImage', 'name', 'continent', 'alpha3Code', 'population'],
-                    include: [{
-                        model: Activity,
-                        as: "activities"
-                    }]
+                    attributes: ['id', 'flagImage', 'name', 'continent', 'alpha3Code']
                 }).then(result => {
-                    console.log(result);
-                    console.log(result.length);
                     console.log("Enviando listado de paises al cliente");
                     res.status(200).send(result)
                 });
-            }
-        });
 
-        //hasta aquí
+
+                //Hasta aquí. Esto reemplazó el siguiente contenido:
+
+            }
+        )
 
 
         /*
@@ -161,7 +136,7 @@ router.get('/countries', async (req, res) => {
 
 
 router.get('/countries/:code', (req, res) => {
-    var code = req.params.code.toUpperCase();
+    var code = req.params.code;
 
     console.log("Entró aquí -- code: " + code)
 
@@ -245,8 +220,6 @@ router.post("/activities", async (req, res) => {
                 console.log(country);
                 await newActivity.addCountries(country)
             }
-        } else {
-            console.log("No se encontró país!")
         }
 
         /*

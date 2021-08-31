@@ -158,7 +158,8 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
   - Debe traer solo los datos pedidos en la ruta de detalle de país
   - Incluir los datos de las actividades turísticas correspondientes
 - [ ] __GET /countries?name="..."__:
-  - Obtener los países que coincidan con el nombre pasado como query parameter (No necesariamente tiene que ser una matcheo exacto)
+  - Obtener los países que coincidan con el nombre pasado como query parameter
+(No necesariamente tiene que ser una matcheo exacto) // no entiendo
   - Si no existe ningún país mostrar un mensaje adecuado
 - [ ] __POST /activity__:
   - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de actividad turística por body

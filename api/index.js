@@ -21,8 +21,23 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
+
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-  });
+    server.listen(3001, () => {
+        console.log('%s listening at 3001'); // eslint-disable-line no-console
+    });
+})
+    .catch(e => console.log(e))
+    ;
+
+
+// Necesario para hacer conexión al servidor. Intentar usar el código de arriba
+// mas adelante...
+// force:true lo que hace es borrar la tabla pre-existente.
+
+/*
+server.listen(3001, () => {
+    console.log('Server running on port 3001');
+    conn.sync();
 });
+*/

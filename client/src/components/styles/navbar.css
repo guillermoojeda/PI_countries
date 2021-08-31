@@ -1,0 +1,25 @@
+.navbar {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.navElement {
+    margin: 10px;
+    padding: 5px;
+    width: 20vw;
+    background-color:#cae6e6;
+    border: solid 5px #9fadc9;
+    border-radius: 5px
+}
+
+.navElement Link {
+    text-decoration: none;
+}
+
+.navElement p {
+    margin:0px;
+    text-align: center;
+}
+
