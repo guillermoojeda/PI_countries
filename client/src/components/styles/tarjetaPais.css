@@ -1,0 +1,23 @@
+
+.card{
+    width: 70%;
+    max-width: 900px;
+    padding-bottom: 25px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: auto;
+}
+
+.contenedorTarjetas{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.countryTitle{
+    padding-top: 15px;
+    margin-bottom: 0px;
+    text-align: center;
+    margin: 5px;
+}

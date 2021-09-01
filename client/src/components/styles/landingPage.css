@@ -1,5 +1,5 @@
 .LandingPage {
-    background-image: "/world_map2.jpg";
+    background-image: url("https://i.imgur.com/0QsWton.jpg");
     min-height: 100vh;
     font-size: 20px;
     margin: auto;
@@ -7,9 +7,10 @@
     border: 3px solid green;
     padding: 10px;
     display:flex;
+    background-position: center;
 }
 
-.text1 {
+.text1{
     font-size: 25px;
     margin: auto;
     border: 3px solid black;
@@ -19,6 +20,11 @@
     min-width: 20px;
     background-color: rgb(185, 180, 180);
     border-radius: 5px;
+    text-decoration: none;
+}
+
+.text1 a{
+    text-decoration: none;
 }
 
 .button {

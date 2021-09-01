@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux"; //Debería ser el componenteHome quien se conecta?
 import { addActivity } from "../actions/addActivity.js";
+import "./styles/crearActividad.css";
+
 
 function CrearActividad({ addActivity }) { //Este addActivity no es el que se importa al principio del archivo, es el qeu se conecta al final del mismo!
 
@@ -42,7 +44,7 @@ function CrearActividad({ addActivity }) { //Este addActivity no es el que se im
     }
 
     async function handleSubmit(event) {
-        event.preventDefault();
+        //event.preventDefault();
         addActivity(input);
         console.log("actividad enviada:")
         console.log(input);
@@ -61,86 +63,98 @@ function CrearActividad({ addActivity }) { //Este addActivity no es el que se im
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    name="name"
-                    type="text"
-                    placeholder="Nombre de Actividad"
-                    value={input.name}
-                    onChange={handleChange}
-                />
-                <br />
-                <input
-                    name="duration"
-                    type="text"
-                    placeholder="Duración"
-                    value={input.duration}
-                    onChange={handleChange}
-                />
-                <br />
+        <div className="contenedorComponente">
+            <div className="contenedorForma">
+                <h2 className>Creación de Nueva Actividad</h2>
+                <form onSubmit={handleSubmit}>
+                    <h4 className="fieldTitle">Datos de Actividad:</h4> <input
+                        name="name"
+                        type="text"
+                        placeholder="Nombre de Actividad"
+                        value={input.name}
+                        onChange={handleChange}
+                        required
+                    />
+                    <br />
+                    <input
+                        name="duration"
+                        type="text"
+                        placeholder="Duración"
+                        value={input.duration}
+                        onChange={handleChange}
+                    />
+                    <br />
 
-                <p>Dificultad</p>
-                <input name="difficulty" type="radio" value="1" onChange={handleChange} />
-                <label for="1">1</label>
+                    <h4>Dificultad</h4>
+                    <input name="difficulty" type="radio" value="1" onChange={handleChange} />
+                    <label for="1">1</label>
 
-                <input name="difficulty" type="radio" value="2" onChange={handleChange} />
-                <label for="2">2</label>
+                    <input name="difficulty" type="radio" value="2" onChange={handleChange} />
+                    <label for="2">2</label>
 
-                <input name="difficulty" type="radio" value="3" onChange={handleChange} />
-                <label for="3">3</label>
+                    <input name="difficulty" type="radio" value="3" onChange={handleChange} />
+                    <label for="3">3</label>
 
-                <input name="difficulty" type="radio" value="4" onChange={handleChange} />
-                <label for="4">4</label>
+                    <input name="difficulty" type="radio" value="4" onChange={handleChange} />
+                    <label for="4">4</label>
 
-                <input name="difficulty" type="radio" value="5" onChange={handleChange} />
-                <label for="5">5</label>
-                <br />
+                    <input name="difficulty" type="radio" value="5" onChange={handleChange} />
+                    <label for="5">5</label>
+                    <br />
 
-                <p>Temporada</p>
-                <input name="season" type="radio" value="Spring" onChange={handleChange} />
-                <label for="Spring">Spring</label>
+                    <h4>Temporada</h4>
+                    <input name="season" type="radio" value="Spring" onChange={handleChange} />
+                    <label for="Spring">Spring</label>
 
-                <input name="season" type="radio" value="Summer" onChange={handleChange} />
-                <label for="Summer">Summer</label>
+                    <input name="season" type="radio" value="Summer" onChange={handleChange} />
+                    <label for="Summer">Summer</label>
 
-                <input name="season" type="radio" value="Autumn" onChange={handleChange} />
-                <label for="Autumn">Autumn</label>
+                    <input name="season" type="radio" value="Autumn" onChange={handleChange} />
+                    <label for="Autumn">Autumn</label>
 
-                <input name="season" type="radio" value="Winter" onChange={handleChange} />
-                <label for="Winter">Winter</label>
-                <br />
-                <p></p>
+                    <input name="season" type="radio" value="Winter" onChange={handleChange} />
+                    <label for="Winter">Winter</label>
+                    <br />
+                    <br />
+                    <div >
+                        <span className="fieldTitle">Agregar país para asociar a esta actividad: </span>
+                        <input
+                            name="newCountry"
+                            type="text"
+                            placeholder="país"
+                            value={countryInput.countryName}
+                            onChange={handleCIChange}
+                        />
+                        <button onClick={handleAddCountries} value="Agregar país">Agregar país</button>
 
-                <input type="submit" value="Agregar"></input>
-            </form>
-            <form onSubmit={handleAddCountries}>
-                Agregar país para asociar a esta actividad:
-                <input
-                    name="newCountry"
-                    type="text"
-                    placeholder="país"
-                    value={countryInput.countryName}
-                    onChange={handleCIChange}
-                />
-                <input type="submit" value="Agregar país"></input>
-            </form>
+                    </div>
+                    <p></p>
+                    {input.countries && input.countries.length > 0 ?
 
-            {input.countries && input.countries.length > 0 ?
+                        < div >
+                            La actividad se agregará a los siguientes países:
+                            <ul>
+                                {input.countries.map(c => <li>{c}</li>)}
+                            </ul>
+                        </div>
+                        :
 
-                < div >
-                    La actividad se agregará a los siguientes países:
-                    <ul>
-                        {input.countries.map(c => <li>{c}</li>)}
-                    </ul>
-                </div>
-                :
+                        <div> Nota: Usted no está asociando países a esta actividad.</div>
+                    }
+                    <br />
 
-                <div> Nota: Usted no está asociando países a esta actividad.</div>
+                    <div className="buttonContainer">
+                        <input
+                            type="submit"
+                            className="botonForma"
+                            value="Agregar actividad">
+                        </input>
+                    </div>
+                </form>
 
 
-            }
 
+            </div>
         </div >
     )
 }
@@ -153,8 +167,8 @@ export default connect(null, { addActivity })(CrearActividad)
 
 /*
 "id": 1,
-                "name": "treeking",
-                "difficulty": "2",
-                "duration": "1 week",
-                "season": "Spring",
-*/
+                        "name": "treeking",
+                        "difficulty": "2",
+                        "duration": "1 week",
+                        "season": "Spring",
+                        */

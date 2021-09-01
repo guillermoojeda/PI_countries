@@ -1,0 +1,54 @@
+
+.tarjetaActividad{
+    max-width: 300px;
+    min-width: 270px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    margin: 15px;
+
+}
+
+.activityTitle {
+    background-color: #F6C5CC;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.rowar{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    padding-bottom: 10px;
+    
+}
+
+.diff {
+    margin:5px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.dur {
+    margin:5px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.seas {
+    margin:5px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.subtitle {
+    margin:5px;
+}
+
+.slot {
+    min-width: 80px
+
+}
+
+

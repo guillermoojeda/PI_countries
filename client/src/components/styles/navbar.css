@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: stretch;
+    text-decoration: none;
 }
 
 .navElement {
@@ -11,10 +12,11 @@
     width: 20vw;
     background-color:#cae6e6;
     border: solid 5px #9fadc9;
-    border-radius: 5px
+    border-radius: 5px;
+    text-decoration: none;
 }
 
-.navElement Link {
+.navElement a {
     text-decoration: none;
 }
 

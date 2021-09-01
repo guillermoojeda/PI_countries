@@ -12,25 +12,10 @@ function PaginaPais({ country, match, fetchCountry }) {
         fetchCountry(alpha3Code);
     }, [fetchCountry, alpha3Code])
 
-    /*
-Effect callbacks are synchronous to prevent race conditions. Put the async function inside:
-
-useEffect(() => {
-async function fetchData() {
-// You can await here
-const response = await MyAPI.getData(someId);
-// ...
-}
-fetchData();
-}, [someId]); // Or [] if effect doesn't need props or state
-*/
-
     console.log(country);
 
     return (
-        <div>
-            <div>Componente PaginaPais</div>
-            <div>Código de tres letras: {match.params.alpha3Code}</div>
+        <div className="contenedorDePaginaPais">
             <TarjetaPais country={country} />
         </div>
     )

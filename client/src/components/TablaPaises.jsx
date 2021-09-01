@@ -23,7 +23,9 @@ function TablaPaises({ countries, fetchCountries }) { //paises es un array de pa
         orderedCountries: [...countries],
         displayedCountries: [...countries].slice(0, 9),
         filterValue: "",
-        activityValue: ""
+        continentValue: "",
+        activityValue: "",
+
 
     })
 
@@ -43,10 +45,10 @@ function TablaPaises({ countries, fetchCountries }) { //paises es un array de pa
         });
     }, [countries])
 
+
     //const paises = useSelector(state => state.countries)
 
     // Estados React
-
 
     console.log(countries);
     console.log(tableStatus);
@@ -221,6 +223,25 @@ function TablaPaises({ countries, fetchCountries }) { //paises es un array de pa
         })
     }
 
+    function handleContinentChange(event) {
+
+        var arr1 = tableStatus.orderedCountries;
+        var str = event.target.value;
+        var arr2 = arr1.filter(e => {
+            var s1 = e.continent.toLowerCase();
+            var s2 = str.toLowerCase();
+            return (s1.includes(s2))
+        });
+        if (arr2 && arr2.length > 9) var arr3 = arr2.slice(0, 9);
+        else if (arr2) var arr3 = arr2;
+        setTableStatus({
+            ...tableStatus,
+            //orderedCountries: arr2,
+            displayedCountries: arr3,
+            [event.target.name]: event.target.value
+        })
+    }
+
 
 
 
@@ -340,6 +361,21 @@ function TablaPaises({ countries, fetchCountries }) { //paises es un array de pa
 
                 </form>
             </p>
+
+            <p>Ingrese nombre de continente para filtrar:
+                <form>
+                    <input
+                        name="continentValue"
+                        value={tableStatus.continentValue}
+                        onChange={handleContinentChange}
+                        type="text"
+                        placeholder="Ingrese Nombre Continente"
+                        title="Búsqueda de Continente"
+                    />
+
+                </form>
+            </p>
+
             <p>Ingrese nombre de actividad para filtrar:
                 <form onSubmit={handleActivitySubmit}>
                     <input
@@ -411,4 +447,11 @@ export default connect(mapStateToProps, { fetchCountries })(TablaPaises);
 
 
 
-
+/*
+Ahi lo estuve mirando aunque no al 100% porque estoy con otras cosas, pero no esta mal el segundo useEffect,
+lo que ocurre es que vos cuando haces el dispatch lo que se carga es el countries no el displayCountries, y
+vos estas haciendo el map sobre ese displayCountries. Entonces aunque te llegan como prop al componente no
+se están cargando en el estado sin el segundo useEffect. Asi que no estaría mal, quizas podrías hacerlo más
+prolijo haciendo la logica directo en el reducer y que por prop le llegue ya directo solo los paises que
+tiene que mostrar
+*/

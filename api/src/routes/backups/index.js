@@ -12,7 +12,16 @@ const router = Router();
 //
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+
+//En una primera instancia deberán traer todos los países desde 
+//restcountries y guardarlos en su propia base de datos y luego 
+//ya utilizarlos desde allí (Debe almacenar solo los datos 
+//necesarios para la ruta principal)
+//Obtener un listado de los paises.
+
 // Llamados a restcountries.eu
+
+//Debería usar "async" en algún lugar?
 
 
 router.get('/', (req, res) => {
@@ -34,21 +43,7 @@ router.get('/countries', async (req, res) => {
                 console.log("Búsqueda por nombre. Resultado:")
                 console.log(result.data)
                 // necesita implementarse para traer info y también las activities
-                if (result.data) {
-                    Country.findAll({
-                        where: {
-                            name: result.data[0].name
-                        },
-                        include: [{
-                            model: Activity,
-                            as: "activities"
-                        }]
-                    }).then(
-                        response => {
-                            return res.send(response)
-                        })
-
-                }
+                if (result.data) return res.send(result.data)
             }
         ).catch( //Esto no me gusta, pero no puedo arreglarlo de otra forma
             e => { return res.send({ message: "No se encontró país" }) }

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import TarjetaActividad from "./TarjetaActividad";
+import "./styles/tarjetaPais.css"
 
 export default function TarjetaPais(country) {
 
@@ -9,23 +10,27 @@ export default function TarjetaPais(country) {
 
     return (
         <div className="card">
-            <h5 className="country-title">{country.name}</h5>
+            <h5 className="countryTitle">Detalle de País</h5>
             <div className="row">
-                <p>{country.name}</p>
+                <h2>{country.name}</h2>
                 <img className="iconoClima" src={country.flagImage} width="150" alt="Imágen de bandera"></img>
+                <p>Código de 3 letras: {country.alpha3Code}</p>
                 <p>Capital: {country.capital}</p>
                 <p>Continente: {country.continent}</p>
                 <p>Subregion: {country.subregion}</p>
                 <p>Superficie: {country.area} km^2</p>
                 <p>Población: {country.population} </p>
+
                 <h4>Actividades</h4>
-                {
-                    country.activities && country.activities.length > 0
-                        ?
-                        country.activities.map(a => TarjetaActividad(a))
-                        :
-                        <p>Este país no posee actividades cargadas.</p>
-                }
+                <div className="contenedorTarjetas">
+                    {
+                        country.activities && country.activities.length > 0
+                            ?
+                            country.activities.map(a => TarjetaActividad(a))
+                            :
+                            <p>Este país no posee actividades cargadas.</p>
+                    }
+                </div>
 
             </div>
         </div>

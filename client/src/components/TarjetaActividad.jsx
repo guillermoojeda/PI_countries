@@ -1,4 +1,5 @@
 import React from 'react';
+import "./styles/tarjetaActividad.css"
 //import './Card.css';
 
 
@@ -6,19 +7,19 @@ export default function TarjetaActividad({ name, difficulty, duration, season })
     return (
         <div className="tarjetaActividad">
 
-            <h5 className="activity-title">{name}</h5>
-            <div className="row">
-                <div>
-                    <p>Difficulty:</p>
-                    <p>{difficulty}</p>
+            <h3 className="activityTitle">{name}</h3>
+            <div className="rowar">
+                <div className="slot">
+                    <h5 className="subtitle">Dificultad:</h5>
+                    <p className="diff">{difficulty}</p>
                 </div>
-                <div>
-                    <p>Duración:</p>
-                    <p>{duration}</p>
+                <div className="slot">
+                    <h5 className="subtitle">Duración:</h5>
+                    <p className="dur">{duration}</p>
                 </div>
-                <div>
-                    <p>Temporada</p>
-                    <p>{season}</p>
+                <div className="slot">
+                    <h5 className="subtitle">Temporada</h5>
+                    <p className="seas">{season}</p>
                 </div>
             </div>
 
